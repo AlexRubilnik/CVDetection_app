@@ -44,6 +44,7 @@ def draw_results(inputs, results, labels):
             rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
             ax.add_patch(rect)
             ax.text(x, y, "{} {:.0f}%".format(labels[classes[idx] - 1], confidences[idx]*100), bbox=dict(facecolor='white', alpha=0.3))
+        plt.axis('off')
         plt.savefig('C:\\Users\\ashcherbakov\\Desktop\\CVDetection_app\\CVDetection_app\\cv_detection_app\\static\\cv_detection_app\\foo.png', bbox_inches='tight')
         plt.close(fig)
     return results[0]

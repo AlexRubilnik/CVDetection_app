@@ -42,20 +42,24 @@
     <input id='curScr' type='hidden' value='monitor_scr'>
     
     <div>
-        <form action="{% url 'get_detection'  %}" method="post">
+        <form align="center" action="{% url 'get_detection'  %}" method="post">
         {% csrf_token %}
             <fieldset style="border-width: 0px">
                 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
                 <label for="foto_url">Ссылка на фото: </label> 
-                <input id="foto_url" name="foto_url" type="text" value="{{ foto_url }}">
-                <input type="submit" value="OK">
+                <input id="foto_url" name="foto_url" type="text" style='width:60%' onfocus="this.value=''"  value="{{ foto_url }}">
+                <input type="submit" value="Детектировать">
             </fieldset>
         </form>
     </div>
     <div>
         {% if detection %}
-        <image src="{{ foto_url }}" width=600px height=400px></image>
-        <image src="{% static 'cv_detection_app/foo.png' %}" width=600px height=400px></image>
+        <table align="center" id="detection-foto-table"<tr><td align="center">Исходное изображение</td> <td align="center">Результат детекции</td>
+               </tr>
+               <tr><td><image src="{{ foto_url }}" width=500px height=300px></image></td> 
+                   <td><image src="{% static 'cv_detection_app/foo.png' %}" width=500px height=300px></image></td>
+               </tr>
+        </table>   
         {% endif %}
     </div>    
 
