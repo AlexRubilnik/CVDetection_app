@@ -1,0 +1,76 @@
+{% load static %}
+
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <link rel="stylesheet" type="text/css" href="{% static 'cv_detection_app/style.css' %}">
+</head>
+<body>
+
+<div class="header-bgd"> <!-- Header-->
+       <table width="100%">
+       <tr style="height:20px">
+          <td class="header-brand">My Detector</td>
+          <td class="orange-text cursive"></td>  
+          <td class="white-text">Сервис детектирования объектов на изображении</td>
+          <td>
+            <table width="100%"> 
+            <tr>
+               <td><table>
+                 <tr>
+                   <td class="white-text"> Deep Learning School </td>
+
+                   <td class="white-text">   </td>
+                 </tr>
+                    </table>
+               </td>
+            </tr>  
+            <td>
+               <td><table> 
+                  <tr class="white-text">
+                    Гость
+                  </tr>    
+                   </table> 
+               </td>
+            </tr>
+            </table>
+          </td>
+       </tr>
+       </table>
+</div>
+<div class="main_container">  <!-- Содержимое полностью-->
+  <div class="current_scr_container">
+    <input id='curScr' type='hidden' value='monitor_scr'>
+    
+    <div>
+        <form action="{% url 'get_detection'  %}" method="post">
+        {% csrf_token %}
+            <fieldset style="border-width: 0px">
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <label for="foto_url">Ссылка на фото: </label> 
+                <input id="foto_url" name="foto_url" type="text" value="{{ foto_url }}">
+                <input type="submit" value="OK">
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        {% if detection %}
+        <image src="{{ foto_url }}" width=600px height=400px></image>
+        <image src="{% static 'cv_detection_app/foo.png' %}" width=600px height=400px></image>
+        {% endif %}
+    </div>    
+
+<!--             {% block left_side_bar %}{% endblock %}
+            {% block error_message %}{% endblock %}
+            {% block furnace_info %}{% endblock %}
+            {% block furnace_base_trends%}{% endblock %}Ы
+            {% block reports%}{% endblock %}
+            {% block automelts_log %}{% endblock %}
+            {% block automelts_info %}{% endblock %}
+            {% block melt_mod_card_info %}{% endblock %}
+            {% block auto_melts_set_points %}{% endblock %} -->
+
+  </div>
+</div>
+
+</body>
+</html>

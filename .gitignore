@@ -1,0 +1,5 @@
+FregatMonitoring/db.sqlite3
+
+**/__pycache__/
+
+**/torch_env/
