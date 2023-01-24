@@ -17,7 +17,7 @@ ssd_model.eval()
 
 utils = nvidia_ssd_processing_utils()
 
-def predict(uris):
+def predict(uris, confidence):
     inputs = [utils.prepare_input(uri) for uri in uris]
     tensor = utils.prepare_tensor(inputs)
 
@@ -25,7 +25,7 @@ def predict(uris):
         detections_batch = ssd_model(tensor)
 
     results_per_input = utils.decode_results(detections_batch)
-    best_results_per_input = [utils.pick_best(results, 0.30) for results in results_per_input]
+    best_results_per_input = [utils.pick_best(results, confidence) for results in results_per_input]
     classes_to_labels = utils.get_coco_object_dictionary()
 
     return inputs, best_results_per_input, classes_to_labels

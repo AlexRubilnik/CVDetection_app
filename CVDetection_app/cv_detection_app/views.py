@@ -24,7 +24,8 @@ def get_detection(request):
         form = FotoURLForm(request.POST)
         if form.is_valid():
             foto_url = form.cleaned_data['foto_url'] 
-            results= detector.predict([foto_url,])
+            confidence = form.cleaned_data['confidence'] 
+            results= detector.predict([foto_url,], confidence)
             detector.draw_results(*results)     
             detection = True
             error_message = False
@@ -33,7 +34,8 @@ def get_detection(request):
 
     context = {"detection": detection,
                "error_message": error_message,
-               "foto_url": foto_url} 
+               "foto_url": foto_url,
+               "confidence": confidence} 
 
     return render(request, 'cv_detection_app/index.html', context)
     
