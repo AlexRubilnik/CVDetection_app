@@ -20,7 +20,7 @@ scipy==1.7.3
 six==1.16.0
 sqlparse==0.4.3       
 tifffile==2021.11.2   
-torch==1.7.0+cpu      
+torch==1.7.1+cpu      
 torchaudio==0.7.0     
 torchvision==0.8.1+cpu
 typing_extensions==4.4.0
